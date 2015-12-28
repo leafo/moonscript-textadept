@@ -241,7 +241,7 @@ local cls = token(l.CLASS, P("@") * alphanum ^ 0 + (R("AZ") * alphanum ^ 0) + wo
   "super"
 }))
 local upper_operator = token(l.TYPE, P("->") + P("=>") + S("[]()"))
-local operator = token(l.OPERATOR, S("+-*/%^#=<>&|~;:,.{}[]()"))
+local operator = token(l.OPERATOR, S("+-*/%^#=<>&|~;:,.{}[]()!\\"))
 local identifier = token(l.IDENTIFIER, l.word)
 local key = token(l.FUNCTION, P(":") * alphanum ^ 1 + alphanum ^ 1 * P(":"))
 local lua_integer = P("-") ^ -1 * (l.hex_num + l.dec_num)

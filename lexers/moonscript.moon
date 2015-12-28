@@ -117,7 +117,7 @@ alphanum = R("az", "AZ", "09", "__")
 
 cls = token l.CLASS, P("@") * alphanum^0 + (R("AZ") * alphanum^0) + word_match {"self", "super"}
 upper_operator = token l.TYPE, P"->" + P"=>" + S"[]()"
-operator = token l.OPERATOR, S "+-*/%^#=<>&|~;:,.{}[]()"
+operator = token l.OPERATOR, S "+-*/%^#=<>&|~;:,.{}[]()!\\"
 
 identifier = token l.IDENTIFIER, l.word
 key = token l.FUNCTION, P":" * alphanum^1 + alphanum^1 * P":"
