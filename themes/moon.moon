@@ -54,18 +54,18 @@ property['style.class'] = 'fore:%(color.blue)'
 property['style.comment'] = 'fore:%(color.gray)'
 property['style.constant'] = 'fore:%(color.blue)'
 
-property['style.embedded'] = '%(style.keyword),back:%(color.black3)', but no idea what this is
+property['style.embedded'] = '%(style.keyword),back:%(color.black3)'
 property['style.error'] = 'fore:%(color.white),back:%(color.red)'
 property['style.function'] = 'fore:%(color.orange)'
 property['style.identifier'] = ''
 property['style.keyword'] = 'fore:%(color.purple)'
-property['style.label'] = 'fore:%(color.green)' -- okay?
+property['style.label'] = 'fore:%(color.light_blue)' -- okay?
 property['style.number'] = 'fore:%(color.blue_purple)'
 property['style.operator'] = 'fore:%(color.pink)'
 property['style.preprocessor'] = 'fore:%(color.green)'
 property['style.regex'] = 'fore:%(color.yellow)'
 property['style.string'] = 'fore:%(color.yellow)'
-property['style.type'] = 'fore:%(color.green)'? use this for func ops
+property['style.type'] = 'fore:%(color.green)'
 property['style.variable'] = 'fore:%(color.white)'
 property['style.whitespace'] = ''
 

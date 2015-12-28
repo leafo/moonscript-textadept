@@ -18,6 +18,11 @@ local comment = token(l.COMMENT, block_comment + line_comment)
 local sq_str = l.delimited_range("'")
 local dq_str = l.delimited_range('"')
 local string = token(l.STRING, sq_str + dq_str) + token("longstring", longstring)
+local literals = token(l.LABEL, word_match({
+  "true",
+  "false",
+  "nil"
+}))
 local keyword = token(l.KEYWORD, word_match({
   "with",
   "else",
@@ -43,10 +48,7 @@ local keyword = token(l.KEYWORD, word_match({
   "when",
   "then",
   "from",
-  "unless",
-  "true",
-  "false",
-  "nil"
+  "unless"
 }))
 local invalid = token(l.ERROR, word_match({
   "end",
@@ -256,6 +258,10 @@ local _rules = {
   {
     "function",
     func + key
+  },
+  {
+    "label",
+    literals
   },
   {
     "keyword",

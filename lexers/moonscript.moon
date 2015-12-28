@@ -20,10 +20,14 @@ sq_str = l.delimited_range "'"
 dq_str = l.delimited_range '"'
 string = token(l.STRING, sq_str + dq_str) + token("longstring", longstring)
 
+literals = token l.LABEL, word_match {
+  "true", "false", "nil"
+}
+
 keyword = token l.KEYWORD, word_match {
   "with", "else", "do", "class", "while", "continue", "or", "switch", "using",
   "export", "extends", "not", "and", "return", "elseif", "if", "break", "for",
-  "in", "import", "local", "when", "then", "from", "unless", "true", "false", "nil"
+  "in", "import", "local", "when", "then", "from", "unless"
 }
 
 invalid = token l.ERROR, word_match {
@@ -129,6 +133,7 @@ _tokenstyles = {
 _rules = {
   {"whitespace", ws}
   {"function", func + key}
+  {"label", literals}
   {"keyword", keyword}
   {"error", invalid}
   {"class", cls}
