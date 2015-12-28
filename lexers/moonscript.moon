@@ -23,7 +23,7 @@ string = token(l.STRING, sq_str + dq_str) + token("longstring", longstring)
 keyword = token l.KEYWORD, word_match {
   "with", "else", "do", "class", "while", "continue", "or", "switch", "using",
   "export", "extends", "not", "and", "return", "elseif", "if", "break", "for",
-  "in", "import", "local", "when", "then", "from", "unless", "true", "false"
+  "in", "import", "local", "when", "then", "from", "unless", "true", "false", "nil"
 }
 
 invalid = token l.ERROR, word_match {
@@ -111,8 +111,10 @@ library = token "library", word_match {
 
 alphanum = R("az", "AZ", "09", "__")
 
-cls = token l.CLASS, P("@") + (R("AZ") * alphanum^0) + word_match {"self", "super"}
+cls = token l.CLASS, P("@") * alphanum^0 + (R("AZ") * alphanum^0) + word_match {"self", "super"}
+upper_operator = token l.TYPE, P"->" + P"=>" + S"[]()"
 operator = token l.OPERATOR, S "+-*/%^#=<>&|~;:,.{}[]()"
+
 identifier = token l.IDENTIFIER, l.word
 key = token l.FUNCTION, P":" * alphanum^1 + alphanum^1 * P":"
 
@@ -136,6 +138,7 @@ _rules = {
   {"string", string}
   {"comment", comment}
   {"number", number}
+  {"type", upper_operator}
   {"operator", operator}
 }
 

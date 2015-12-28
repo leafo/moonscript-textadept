@@ -45,7 +45,8 @@ local keyword = token(l.KEYWORD, word_match({
   "from",
   "unless",
   "true",
-  "false"
+  "false",
+  "nil"
 }))
 local invalid = token(l.ERROR, word_match({
   "end",
@@ -233,10 +234,11 @@ local library = token("library", word_match({
   "debug.setfenv"
 }, "."))
 local alphanum = R("az", "AZ", "09", "__")
-local cls = token(l.CLASS, P("@") + (R("AZ") * alphanum ^ 0) + word_match({
+local cls = token(l.CLASS, P("@") * alphanum ^ 0 + (R("AZ") * alphanum ^ 0) + word_match({
   "self",
   "super"
 }))
+local upper_operator = token(l.TYPE, P("->") + P("=>") + S("[]()"))
 local operator = token(l.OPERATOR, S("+-*/%^#=<>&|~;:,.{}[]()"))
 local identifier = token(l.IDENTIFIER, l.word)
 local key = token(l.FUNCTION, P(":") * alphanum ^ 1 + alphanum ^ 1 * P(":"))
@@ -290,6 +292,10 @@ local _rules = {
   {
     "number",
     number
+  },
+  {
+    "type",
+    upper_operator
   },
   {
     "operator",
